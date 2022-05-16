@@ -60,7 +60,7 @@ namespace LecturaModel.DAL
                             Lectura lectura = new Lectura()
                             {
                                 Medidor = arr[0],
-                                Fecha = arr[1],
+                                Fecha = (DateTime)Convert.ChangeType(arr[1], typeof(DateTime)),
                                 Consumo = arr[2]
                             };
                             lista.Add(lectura);

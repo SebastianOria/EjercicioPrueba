@@ -9,12 +9,12 @@ namespace LecturaModel
     public class Lectura
     {
         private string medidor;
-        private string fecha;
+        private DateTime fecha;
         private string consumo;
         
 
         public string Medidor { get => medidor; set=> medidor = value; }
-        public string Fecha { get => fecha; set => fecha = value; }
+        public DateTime Fecha { get => fecha; set => fecha = value; }
         public string Consumo { get => consumo; set => consumo = value; }
         
 

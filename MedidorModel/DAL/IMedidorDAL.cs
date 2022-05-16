@@ -8,6 +8,6 @@ namespace MedidorModel.DAL
 {
     public interface IMedidorDAL
     {
-         List<Medidor>ObtenerMedidores();
+        List<Medidor>ObtenerMedidores();
     }
 }

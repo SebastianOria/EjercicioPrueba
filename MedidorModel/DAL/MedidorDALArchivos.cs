@@ -24,7 +24,7 @@ namespace MedidorModel.DAL
         }
 
         private static string url = Directory.GetCurrentDirectory();
-        private static string archivo = url + "/medidores.txt";
+        private static string archivo = url + "/Medidores.txt";
 
         public List<Medidor>ObtenerMedidores()
         {
@@ -45,7 +45,7 @@ namespace MedidorModel.DAL
                                 Id = arr[0]
                                
                             };
-                            lista.Add(medidor);
+                            lista.Add(medidor );
                         }
                     } while (texto != null);
                 }

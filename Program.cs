@@ -16,7 +16,7 @@ namespace EjercicioPrueba
      class Program
     {
         private static ILecturaDAL lecturaDAL = LecturaDALArchivos.GetInstancia();
-        private static IMedidorDAL MedidorDAL = MedidorDALArchivos.GetInstancia();
+        private static IMedidorDAL medidorDAL = MedidorDALArchivos.GetInstancia();
         static bool Menu() {
 
             bool continuar = true;
@@ -55,8 +55,36 @@ namespace EjercicioPrueba
 
         static void Ingresar()
         {
+            bool containsSearchResult = false;
             Console.WriteLine("Ingrese Medidor: ");
             string medidor = Console.ReadLine().Trim();
+
+            List<Medidor> medidora = null;
+            lock (medidorDAL)
+            {
+                medidora = medidorDAL.ObtenerMedidores();
+            }
+            while (!containsSearchResult)
+            {
+                for (int i = 0; i < medidora.Count; i++)
+                {
+                    Console.WriteLine(medidora[i]);
+                    if (containsSearchResult = medidora[i].ToString().Equals(medidor))
+                    {
+                        break;
+
+                    }
+                }
+                if (containsSearchResult == true)
+                {
+                    break;
+
+                }
+                else
+                {   Console.WriteLine("El medidor no se encuentra en la lista, por favor ingrese un medidor valido: ");
+                    medidor = Console.ReadLine().Trim();
+                }
+            }
             Console.WriteLine("Ingrese Fecha :");
             string fecha = Console.ReadLine().Trim();
             Console.WriteLine("Ingrese valor de consumo :");
@@ -64,7 +92,7 @@ namespace EjercicioPrueba
             Lectura lectura = new Lectura()
             {
                 Medidor = medidor,
-                Fecha = fecha,
+                Fecha = (DateTime)Convert.ChangeType(fecha, typeof(DateTime)),
                 Consumo = consumo
             };
            
